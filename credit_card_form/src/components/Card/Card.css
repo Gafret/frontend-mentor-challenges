@@ -1,0 +1,46 @@
+.card {
+    position: absolute;
+    width: 17rem;
+    aspect-ratio: 9/5;
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: "Space Grotesk", sans-serif;
+    padding: 1rem;
+}
+
+.card__logo > img {
+    width: 3rem;
+}
+
+.card_back {
+    background-image: url("../../images/bg-card-back.png");
+    top: 50%;
+    left: 22%;
+}
+
+.card_front {
+    background-image: url("../../images/bg-card-front.png");
+    top: 20%;
+    left: 16%;
+}
+
+.card__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: hsl(270, 3%, 87%);
+    font-size: 0.7rem;
+}
+
+.card__number {
+    color:hsl(270, 3%, 87%);
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.card__cvc {
+    color: hsl(270, 3%, 87%);
+}
