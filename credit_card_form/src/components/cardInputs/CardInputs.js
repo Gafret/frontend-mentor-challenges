@@ -3,7 +3,7 @@ import './CardInputs.css';
 export default function CardInputs({onInput, cardInfo}){
     function handleChange(e){
         let target = e.target;
-        console.log(target)
+        let data = target.value;
         switch(target.name){
             case "cardholder":
                 onInput(
@@ -14,6 +14,9 @@ export default function CardInputs({onInput, cardInfo}){
                 );
                 break;
             case "card-number":
+                data = data.toString();
+                data = formatCardNumber(data);
+                target.value = data;
                 onInput(
                     {
                         ...cardInfo,
@@ -22,6 +25,9 @@ export default function CardInputs({onInput, cardInfo}){
                 );
                 break;
             case "expM":
+                data = data.toString();
+                data = formatDate(data);
+                target.value = parseInt(data);
                 onInput(
                     {
                         ...cardInfo,
@@ -30,6 +36,9 @@ export default function CardInputs({onInput, cardInfo}){
                 );
                 break;
             case "expY":
+                data = data.toString();
+                data = formatDate(data);
+                target.value = parseInt(data);
                 onInput(
                     {
                         ...cardInfo,
@@ -57,7 +66,7 @@ export default function CardInputs({onInput, cardInfo}){
                 <label for="cardholder-name">cardholder name</label>
                 <input id="cardholder-name" className="card-form__input" name="cardholder" required="true"></input>
                 <label for="card-number">card number</label>
-                <input type="number" id="card-number" className="card-form__input" name="card-number" required="true"></input>
+                <input type="text" id="card-number" className="card-form__input" name="card-number" required="true"></input>
 
                 <div className="card-form__input-group">
 
@@ -82,9 +91,40 @@ export default function CardInputs({onInput, cardInfo}){
 }
 
 function validateCardNumber(number){
-
+    if(number.length > 16){
+        return false;
+    }
+    return true;
 }
 
 function formatCardNumber(number){
-    
+    let res = number;
+    if(!validateCardNumber(number)){
+        res = number.slice(0, 15);
+        let output = [];
+        for(let i=0; i<=res.length; i++){
+            if(i % 4 === 0){
+                output.push(" ");
+            }
+            output.push(res[i]);
+        }
+        res = output.join("");
+        console.log(res);
+        return res;
+    }
+    return res;
+}
+
+function validateDate(date){
+    if(date.length > 2){
+        return false;
+    }
+    return true;
+}
+
+function formatDate(date){
+    if(!validateDate(date)){
+        return date.slice(0, 1);
+    }
+    return date;
 }
