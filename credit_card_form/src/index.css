@@ -11,6 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-image: linear-gradient(to right, transparent, transparent 33%,  white 33%,  white 100%), url("bg-main-desktop.png");
+  background-repeat: no-repeat;
 }
 
 code {

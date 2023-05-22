@@ -1,6 +1,5 @@
 .card {
-    position: absolute;
-    width: 17rem;
+    width: 20rem;
     aspect-ratio: 9/5;
     background-size: contain;
     background-repeat: no-repeat;
@@ -8,39 +7,54 @@
     font-weight: 500;
     font-family: "Space Grotesk", sans-serif;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .card__logo > img {
-    width: 3rem;
+    width: 3.4rem;
 }
 
 .card_back {
     background-image: url("../../images/bg-card-back.png");
-    top: 50%;
-    left: 22%;
+    margin-left: -1rem;
 }
 
 .card_front {
     background-image: url("../../images/bg-card-front.png");
-    top: 20%;
-    left: 16%;
+    margin-left: 1rem;
 }
 
 .card__details {
+    position: relative;
+    top: 36%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     color: hsl(270, 3%, 87%);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .card__number {
+    position: relative;
+    top: 10%;
     color:hsl(270, 3%, 87%);
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 0.1rem;
 }
 
 .card__cvc {
+    position: relative;
     color: hsl(270, 3%, 87%);
+
+    left: 82%;
+    top: 41%;
+}
+
+.card__shadow {
+    position: absolute;
+    z-index: -10000;
+    width: 1rem;
+    height: 1rem;
+    box-shadow: 16rem 3rem 9rem 1.4rem black;
 }

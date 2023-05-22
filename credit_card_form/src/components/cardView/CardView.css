@@ -1,3 +1,6 @@
-.width-template {
+.card-container {
     width: 10rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }

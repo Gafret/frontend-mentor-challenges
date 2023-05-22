@@ -5,8 +5,9 @@ export default function Card({side, number, holder, expiration, cvc}){
     let card;
     console.log( number)
     if(side === "front"){
-        card = ( 
+        card = (    
         <div className="card card_front">
+            <div className="card__shadow"></div>
             <div className="card__logo">
                 <img src={logo}></img>
             </div>
@@ -21,6 +22,7 @@ export default function Card({side, number, holder, expiration, cvc}){
     else if(side === "back"){
         card = (
         <div className="card card_back">
+            <div className="card__shadow"></div>
             <div className="card__cvc">{cvc}</div>
         </div>
         );

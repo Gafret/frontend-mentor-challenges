@@ -20,7 +20,7 @@ export default function CardInputs({onInput, cardInfo}){
                 onInput(
                     {
                         ...cardInfo,
-                        cardNumber: target.value
+                        cardNumber: getCardNumberMask(data)
                     }
                 );
                 break;
@@ -47,6 +47,9 @@ export default function CardInputs({onInput, cardInfo}){
                 );
                 break;
             case "cvc":
+                data = data.toString();
+                data = formatCVC(data);
+                target.value = parseInt(data);
                 onInput(
                     {
                         ...cardInfo,
@@ -91,7 +94,7 @@ export default function CardInputs({onInput, cardInfo}){
 }
 
 function validateCardNumber(number){
-    if(number.length > 16){
+    if(number.length < 16 || number.length > 16){
         return false;
     }
     return true;
@@ -100,19 +103,24 @@ function validateCardNumber(number){
 function formatCardNumber(number){
     let res = number;
     if(!validateCardNumber(number)){
-        res = number.slice(0, 15);
-        let output = [];
-        for(let i=0; i<=res.length; i++){
-            if(i % 4 === 0){
-                output.push(" ");
-            }
-            output.push(res[i]);
-        }
-        res = output.join("");
-        console.log(res);
+        res = number.slice(0, 16);
         return res;
     }
     return res;
+}
+
+function getCardNumberMask(number){
+    if(number.length == 16){
+        let res = []
+        for(let i=0; i<=number.length; i++){
+            if(i % 4 === 0){
+                res.push(" ");
+            }
+            res.push(number[i]);
+        }
+        return res.join("");
+    }
+    return number;
 }
 
 function validateDate(date){
@@ -124,7 +132,22 @@ function validateDate(date){
 
 function formatDate(date){
     if(!validateDate(date)){
-        return date.slice(0, 1);
+        return date.slice(0, 2);
     }
     return date;
+}
+
+function validateCVC(cvc){
+    console.log(cvc)
+    if(cvc.length > 3 || cvc.length < 3){
+        return false;
+    }
+    return true;
+}
+
+function formatCVC(cvc){
+    if(!validateCVC(cvc)){
+        return cvc.slice(0, 3);
+    }
+    return cvc;
 }
